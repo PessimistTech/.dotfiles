@@ -16,6 +16,7 @@ call plug#begin()
 	Plug 'junegunn/fzf.vim'
 	Plug 'morhetz/gruvbox'
 	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -43,7 +44,7 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 
 " clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " undo
 set undodir=~/.vim/undodir
@@ -66,8 +67,11 @@ filetype indent on
 " coc mappings
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gr <Plug>(coc-references)
-autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufWritePre *.java :silent call CocAction('runCommand', 'java.action.organizeImports') 
+augroup AutoImports
+	autocmd!
+	autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+	autocmd BufWritePre *.java :silent call CocAction('runCommand', 'java.action.organizeImports') 
+augroup END
 
 " nerdtree mappings
 let NERDTreeShowHidden=1
@@ -86,3 +90,6 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
+
+set laststatus=2
+set statusline=%#PmenuSel#%{fugitive#head()}%#LineNr#\ %f%=%y\ %l:%c\ 
