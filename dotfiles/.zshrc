@@ -1,4 +1,8 @@
 # jwilson zshrc file
+# local machine expansion 
+if [ -f ~/.zshlocal ]; then 
+	source ~/.zshlocal
+fi
 
 # autocomplete
 autoload -Uz compinit
@@ -6,7 +10,14 @@ compinit
 _comp_options+=(globdots)
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:git*' formats '(%F{blue}%b%f)'
+case $OSTYPE in 
+	'darwin'*)
+		zstyle ':vcs_info:git*' formats '(%F{red}%b%f)'
+	;;
+	'linux'*)
+		zstyle ':vcs_info:git*' formats '(%F{blue}%b%f)'
+	;;
+esac
 precmd () { vcs_info }
 
 # prompt
@@ -55,7 +66,3 @@ export downloads='~/Downloads'
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-# expansion 
-if [ -f ~/.zshlocal ]; then 
-	source ~/.zshlocal
-fi
