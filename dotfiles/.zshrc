@@ -1,8 +1,4 @@
 # jwilson zshrc file
-# local machine expansion 
-if [ -f ~/.zshlocal ]; then 
-	source ~/.zshlocal
-fi
 
 # autocomplete
 autoload -Uz compinit
@@ -66,3 +62,7 @@ export downloads='~/Downloads'
 export VISUAL=vim
 export EDITOR=$VISUAL
 
+# local machine expansion 
+if [ -f ~/.zshlocal ]; then 
+	source ~/.zshlocal
+fi
