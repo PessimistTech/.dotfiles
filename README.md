@@ -1,6 +1,13 @@
-# Dotfiles
+Dotfiles
+========
 
-This repo contains dotfiles for use across Homenet machines. 
+This repo contains dotfiles written for Homenet machines
 
-To make use of these dotfiles use the install.sh script to install symlinks to these files so that they are updated when this repo is updated. 
-The install script expects the location of this repo to be ~/gitlab/jwilson/dotfiles on macos, and have coreutils on linux (for relative paths). 
+This repo uses stow to install and handle all dotfile sym-links. Stow should be
+installed on your machine, and this repo should be cloned 1 dir under where
+these dotfiles should be installed. (Likely in a .dotfiles dir in $HOME).
+
+Running the install.sh script will install all desired dotfiles based
+upon the contents of the STOW_FOLDERS env variable. This variable
+should hold a space separated list of folders from this repo. All
+dotfiles in those folders, including subfolders will be installed.
