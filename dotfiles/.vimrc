@@ -92,4 +92,4 @@ nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 
 set laststatus=2
-set statusline=%#PmenuSel#%{fugitive#head()}%#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
+set statusline=%#PmenuSel#\ %{fugitive#head()}\ %#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
