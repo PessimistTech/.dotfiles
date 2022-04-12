@@ -106,4 +106,4 @@ nnoremap 9 :9gt<CR>
 nnoremap 0 :tablast<CR>
 
 set laststatus=2
-set statusline=%#PmenuSel#%{fugitive#head()}%#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
+set statusline=%#PmenuSel#\ %{fugitive#head()}\ %#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
