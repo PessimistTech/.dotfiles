@@ -91,5 +91,19 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 
+" switching tabs
+nnoremap H :tabprevious<CR>
+nnoremap L :tabnext<CR>
+nnoremap 1 :1gt<CR>
+nnoremap 2 :2gt<CR>
+nnoremap 3 :3gt<CR>
+nnoremap 4 :4gt<CR>
+nnoremap 5 :5gt<CR>
+nnoremap 6 :6gt<CR>
+nnoremap 7 :7gt<CR>
+nnoremap 8 :8gt<CR>
+nnoremap 9 :9gt<CR>
+nnoremap 0 :tablast<CR>
+
 set laststatus=2
 set statusline=%#PmenuSel#%{fugitive#head()}%#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
