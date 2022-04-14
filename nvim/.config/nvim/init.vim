@@ -107,5 +107,7 @@ nnoremap <leader>gb :Telescope git_branches<CR>
 nnoremap <leader>gc :Telescope git_commits<CR>
 nnoremap <leader>pv :Telescope live_grep<CR>
 
+set completeopt=menu,menuone,noselect
+
 " connect lua
 lua require('init')
