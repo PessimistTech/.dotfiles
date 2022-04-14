@@ -54,7 +54,7 @@ set shiftwidth=4
 set clipboard=unnamed
 
 " undo
-set undodir=~/.config/nvim/undodir
+set undodir=~/.local/nvim/undodir
 set undofile
 
 " update path
