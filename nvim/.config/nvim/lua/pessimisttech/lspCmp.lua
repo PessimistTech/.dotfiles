@@ -28,7 +28,7 @@ end
 
 local cmp = require('cmp')
 
-cmp.setup({
+cmp.setup{
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -44,10 +44,13 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' }, 
-  }, {
     { name = 'buffer' },
-  })
-})
+    { name = 'path' },
+  }),
+  experimental = {
+	  native_menu = false,
+  }
+}
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
