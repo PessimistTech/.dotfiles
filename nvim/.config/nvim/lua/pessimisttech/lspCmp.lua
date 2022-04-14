@@ -1,23 +1,28 @@
 local completeopt = { 'menu' , 'menuone' , 'noselect' }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lspServers = { 'gopls' }
+local lspServers = { 'gopls', 'jdtls' }
 local opts = { noremap=true, silent=true }
 
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 
+local attach = function() 
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>o', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+-- TODO implement support for lombok in jdtls
 for _, server in pairs(lspServers) do
 	require('lspconfig')[server].setup {
-	  capabilities = capabilities,
-	  on_attach = function()
-		  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-		  vim.api.nvim_buf_set_keymap(0, 'n', 'C-f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-	  end
+		capabilities = capabilities,
+		on_attach = function()
+			attach()
+		end
 	}
 end
 

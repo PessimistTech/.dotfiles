@@ -58,7 +58,7 @@ alias gcm='git commit -m'
 # end aliases
 
 # exports
-export downloads='~/Downloads'
+export downloads="$HOME/Downloads"
 export VISUAL=vim
 export EDITOR=$VISUAL
 
