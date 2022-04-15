@@ -18,6 +18,7 @@ call plug#begin()
 	Plug 'hrsh7th/cmp-buffer'
 	Plug 'hrsh7th/cmp-path'
 	Plug 'hrsh7th/cmp-cmdline'
+	Plug 'saadparwaiz1/cmp_luasnip'
 	Plug 'L3MON4D3/LuaSnip'
 	Plug 'preservim/nerdtree'
 	Plug 'morhetz/gruvbox'
@@ -49,6 +50,7 @@ nmap <leader>nm :set rnu!<CR>
 set smartindent 
 set tabstop=4 softtabstop=4
 set shiftwidth=4
+set expandtab
 
 " clipboard
 set clipboard=unnamed
@@ -105,7 +107,8 @@ nnoremap <leader>f :Telescope git_files<CR>
 nnoremap <leader>F :Telescope find_files<CR>
 nnoremap <leader>gb :Telescope git_branches<CR>
 nnoremap <leader>gc :Telescope git_commits<CR>
-nnoremap <leader>pv :Telescope live_grep<CR>
+nnoremap <leader>ps :Telescope live_grep<CR>
+nnoremap <leader>fs :lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({ previewer=false }))<CR>
 
 set completeopt=menu,menuone,noselect
 
