@@ -26,6 +26,7 @@ call plug#begin()
 	Plug 'tpope/vim-fugitive'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'numToStr/Comment.nvim'
+    Plug 'onsails/lspkind-nvim'
 
 call plug#end()
 
