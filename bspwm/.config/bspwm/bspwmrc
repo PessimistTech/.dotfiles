@@ -2,7 +2,7 @@
 
 #Start polybar first
 bash ~/.config/polybar/launch.sh &
-feh --bg-fill ~/.backgrounds/mountains.jpg &
+feh --bg-fill ~/.backgrounds/mountainsWater.jpg &
 
 # Variable Defines
 color0=#3B4252
