@@ -35,6 +35,7 @@ local attach = function(client, buffnr)
 	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>o', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 	filetype_attach[filetype](client)
 end
 
