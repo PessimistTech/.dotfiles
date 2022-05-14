@@ -94,15 +94,6 @@ nnoremap L :tabnext<CR>
 set laststatus=2
 set statusline=%#PmenuSel#\ %{FugitiveHead()}\ %#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
 
-" telescope mappings
-nnoremap <leader>f :Telescope git_files<CR>
-nnoremap <leader>F :Telescope find_files<CR>
-nnoremap <leader>bf :Telescope buffers<CR>
-nnoremap <leader>gb :Telescope git_branches<CR>
-nnoremap <leader>gc :Telescope git_commits<CR>
-nnoremap <leader>ps :Telescope live_grep<CR>
-nnoremap <leader>fs :lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({ previewer=false }))<CR>
-
 " resize
 nnoremap <C-U> :resize +10<CR>
 nnoremap <C-D> :resize -10<CR>

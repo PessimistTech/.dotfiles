@@ -24,19 +24,34 @@ local filetype_attach = setmetatable({
 },
 {})
 
+local bufMapN = function(buffnr, keymap, callback)
+    local options = {
+        noremap = opts.noremap,
+        silent = opts.silent,
+        callback = function()
+            callback()
+        end,
+    }
+    vim.api.nvim_buf_set_keymap(buffnr, 'n', keymap, '', options)
+end
+
 local attach = function(client, buffnr) 
 	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>gr', "<cmd>lua require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy())<CR>", opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>dn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>dp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>o', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>ts', '<cmd>Telescope treesitter<CR>', opts)
-	vim.api.nvim_buf_set_keymap(buffnr, 'n', '<leader>fds', "<cmd>lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy())<CR>", opts)
+    bufMapN(buffnr, '<leader>gd', vim.lsp.buf.definition) 
+	bufMapN(buffnr, '<leader>gr', function()
+        require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy())
+    end)
+	bufMapN(buffnr, 'K', vim.lsp.buf.hover)
+	bufMapN(buffnr, '<leader>gt', vim.lsp.buf.type_definition)
+	bufMapN(buffnr, '<leader>dn', vim.diagnostic.goto_next)
+	bufMapN(buffnr, '<leader>dp', vim.diagnostic.goto_prev)
+	bufMapN(buffnr, '<leader>rn', vim.lsp.buf.rename)
+	bufMapN(buffnr, '<leader>o', vim.lsp.buf.format)
+    bufMapN(buffnr, '<leader>ca', vim.lsp.buf.code_action)
+    bufMapN(buffnr, '<leader>ts', require('telescope.builtin').treesitter)
+	bufMapN(buffnr, '<leader>fds', function()
+        require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy())
+    end)
 	filetype_attach[filetype](client)
 end
 
