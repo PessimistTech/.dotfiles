@@ -9,24 +9,24 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 " setup plugins
 call plug#begin()
 
-	Plug 'neovim/nvim-lspconfig'
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'hrsh7th/nvim-cmp'
-	Plug 'hrsh7th/cmp-nvim-lsp'
-	Plug 'hrsh7th/cmp-nvim-lua'
-	Plug 'hrsh7th/cmp-buffer'
-	Plug 'hrsh7th/cmp-path'
-	Plug 'hrsh7th/cmp-cmdline'
-	Plug 'saadparwaiz1/cmp_luasnip'
-	Plug 'L3MON4D3/LuaSnip'
-	Plug 'preservim/nerdtree'
-	Plug 'morhetz/gruvbox'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-fugitive'
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'numToStr/Comment.nvim'
-    Plug 'onsails/lspkind-nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'preservim/nerdtree'
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'numToStr/Comment.nvim'
+Plug 'onsails/lspkind-nvim'
 
 call plug#end()
 
@@ -92,15 +92,22 @@ nnoremap H :tabprevious<CR>
 nnoremap L :tabnext<CR>
 
 set laststatus=2
-set statusline=%#PmenuSel#\ %{fugitive#head()}\ %#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
+set statusline=%#PmenuSel#\ %{FugitiveHead()}\ %#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
 
 " telescope mappings
 nnoremap <leader>f :Telescope git_files<CR>
 nnoremap <leader>F :Telescope find_files<CR>
+nnoremap <leader>bf :Telescope buffers<CR>
 nnoremap <leader>gb :Telescope git_branches<CR>
 nnoremap <leader>gc :Telescope git_commits<CR>
 nnoremap <leader>ps :Telescope live_grep<CR>
 nnoremap <leader>fs :lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({ previewer=false }))<CR>
+
+" resize
+nnoremap <C-U> :resize +10<CR>
+nnoremap <C-D> :resize -10<CR>
+nnoremap <C-G> :vertical resize +10<CR>
+nnoremap <C-S> :vertical resize -10<CR>
 
 set completeopt=menu,menuone,noselect
 
