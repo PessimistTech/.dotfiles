@@ -16,6 +16,8 @@ case $OSTYPE in
 esac
 precmd () { vcs_info }
 
+bindkey -v
+
 # prompt
 setopt prompt_subst
 export PS1='%F{green}%n@%m%f: %1~${vcs_info_msg_0_} %# '
