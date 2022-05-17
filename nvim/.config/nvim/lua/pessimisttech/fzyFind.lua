@@ -29,6 +29,7 @@ function MapN(keymap, callback)
 end
 
 MapN("<leader>f", builtin.git_files)
+MapN("<leader>F", builtin.find_files)
 MapN("<leader>bf", function()
     builtin.buffers(require('telescope.themes').get_dropdown({ previewer=false }))
     end)
