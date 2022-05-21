@@ -95,10 +95,10 @@ set laststatus=2
 set statusline=%#PmenuSel#\ %{FugitiveHead()}\ %#StatusLine#\ %f\ %m%=%y\ %l:%c\ 
 
 " resize
-nnoremap <C-U> :resize +10<CR>
-nnoremap <C-D> :resize -10<CR>
-nnoremap <C-G> :vertical resize +10<CR>
-nnoremap <C-S> :vertical resize -10<CR>
+nnoremap <leader>in :resize +10<CR>
+nnoremap <leader>dc :resize -10<CR>
+nnoremap <leader>wd :vertical resize +10<CR>
+nnoremap <leader>sk :vertical resize -10<CR>
 
 set completeopt=menu,menuone,noselect
 
