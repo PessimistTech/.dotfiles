@@ -4,7 +4,8 @@
 bash ~/.config/polybar/launch.sh &
 
 # Screen settings
-xrandr --output HDMI-3 --mode 2560x1440 --rate 165
+xrandr --output HDMI-2 --mode 2560x1440 --rate 165
+xrandr --auto --output HDMI-3 --mode 1920x1080 --rate 60 --right-of HDMI-2
 
 feh --bg-fill ~/.backgrounds/mountainsWater.jpg &
 
@@ -30,7 +31,9 @@ setxkbmap -layout us
 setxkbmap -option caps:escape
 
 #Monitor Config
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+bspc monitor HDMI-2 -d 1 2 3 4 5 6 7 8 9
+bspc monitor HDMI-3 -d 10
+
 
 #BSPWM Config
 bspc config border_width        4
