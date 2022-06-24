@@ -22,6 +22,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'preservim/nerdtree'
 Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -40,8 +41,9 @@ set ic
 set smartcase
 
 " Colors
-colorscheme gruvbox
-highlight Normal ctermbg=none
+let g:tokyonight_transparent = 1
+colorscheme tokyonight
+highlight Normal guibg=none
 " set background=dark
 
 " line numbers
