@@ -104,9 +104,5 @@ nnoremap <leader>sk :vertical resize -10<CR>
 
 set completeopt=menu,menuone,noselect
 
-" git 
-nnoremap <leader>gg :Git<CR>
-nnoremap <leader>gp :Git push <CR> :q <CR>
-
 " connect lua
 lua require('init')
