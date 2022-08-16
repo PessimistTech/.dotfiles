@@ -28,6 +28,19 @@ export HISTSIZE=2000
 export HISTFILESIZE=3000
 export SAVEHIST=$HISTSIZE
 
+# xdg vars
+if [ -z "$XDG_CONFIG_HOME" ] ; then
+    export XDG_CONFIG_HOME="$HOME/.config" 
+fi 
+
+if [ -z "$XDG_DATA_HOME" ] ; then
+    export XDG_DATA_HOME="$HOME/.local/share" 
+fi 
+
+if [ -z "$XDG_CACHE_HOME" ] ; then
+    export XDG_CACHE_HOME="$HOME/.cache" 
+fi
+
 
 # aliases
 alias ll='ls -l'
@@ -61,7 +74,11 @@ alias gcm='git commit -m'
 
 # exports
 export downloads="$HOME/Downloads"
-export VISUAL=vim
+if (( $+commands[nvim] )); then 
+    export VISUAL=nvim
+else 
+    export VISUAL=vim
+fi
 export EDITOR=$VISUAL
 
 # local machine expansion 
