@@ -46,6 +46,12 @@ fi
 alias ll='ls -l'
 alias la='ls -a'
 alias vi='vim'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+if (( $+commands[rg] )); then 
+	alias rg='rg --color=auto'
+fi
 
 if [[ $OSTYPE == 'darwin'* ]]; then 
 	alias cafd='caffeinate -d'
@@ -53,16 +59,6 @@ fi
 
 if (( $+commands[xclip] )); then 
 	alias xclip='xclip -selection clip'
-fi
-
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias egrep='egrep --color=auto'
-	if (( $+commands[rg] )); then 
-		alias rg='rg --color=auto'
-	fi
 fi
 
 # git aliases
