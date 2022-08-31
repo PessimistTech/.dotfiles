@@ -80,8 +80,12 @@ filetype indent on
 let NERDTreeShowHidden=1
 nnoremap <leader>n :NERDTreeFocus<CR>
 
-" keep J centered
+" keep centered
 nnoremap J mzJ`z
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap j jzz
+nnoremap k kzz
 
 " moving lines
 vnoremap J :m '>+1<CR>gv=gv
