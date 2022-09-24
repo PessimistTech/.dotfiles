@@ -7,6 +7,10 @@
  *
  */
 
+* {
+    background: transparent;
+}
+
 configuration {
 	font:							"FantasqueSansMono Nerd Font 14";
     show-icons:                     false;
@@ -20,7 +24,7 @@ configuration {
 
 window {
     transparency:                   "real";
-    background-color:               @background;
+    background-color:               @transparent;
     text-color:                     @foreground;
     border-radius:                  0px;
     height:                         42%;
@@ -33,21 +37,21 @@ window {
 prompt {
     enabled: 						true;
     padding:                        1% 1% 1% 0%;
-	background-color: 				@background-alt;
+	background-color: 				transparent;
 	text-color: 					@foreground;
 }
 
 textbox-prompt-colon {
 	expand: 						false;
 	str: 							"System |";
-	background-color: 				@background-alt;
+	background-color: 				transparent;
 	text-color: 					@foreground;
     padding:                        1% 0.5% 1% 7%;
 }
 
 inputbar {
 	children: 						[ textbox-prompt-colon, prompt ];
-    background-color:               @background-alt;
+    background-color:               transparent;
     text-color:                     @foreground;
     expand:                         false;
     border:                  		0% 0% 0.2% 0%;
@@ -59,7 +63,7 @@ inputbar {
 }
 
 listview {
-    background-color:               @background;
+    background-color:               transparent;
 	width:							100%;
     margin:                         0% 0% 0% 0%;
     spacing:                        3%;
@@ -69,14 +73,14 @@ listview {
 }
 
 mainbox {
-    background-color:               @background;
+    background-color:               transparent;
     children:                       [ listview, inputbar ];
     spacing:                        0%;
     padding:                        5% 0% 5% 13.25%;
 }
 
 element {
-    background-color:               @background-alt;
+    background-color:               #00000000;
     text-color:                     @foreground;
     orientation:                    horizontal;
     border-radius:                  0%;
@@ -102,12 +106,12 @@ element alternate.urgent {
 
 element normal.active,
 element alternate.active {
-    background-color:               @background-alt;
+    background-color:               transparent;
     text-color:                     @foreground;
 }
 
 element selected {
-    background-color:               @selected;
+    background-color:               @background-alt;
     text-color:                     @foreground;
     border:                  		0% 0% 0.2% 0%;
     border-radius:                  0%;
@@ -120,6 +124,6 @@ element selected.urgent {
 }
 
 element selected.active {
-    background-color:               @background-alt;
-    color:                          @foreground;
+    background-color:               @transparent;
+    color:                          @transparent;
 }

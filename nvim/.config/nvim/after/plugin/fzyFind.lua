@@ -5,8 +5,17 @@ end
 
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
+local tconfig = require('telescope.config')
+
+local vimgrep_arguments = { unpack(tconfig.values.vimgrep_arguments) }
+
+table.insert(vimgrep_arguments, "--hidden")
+table.insert(vimgrep_arguments, "--glob")
+table.insert(vimgrep_arguments, "!**/.git/*")
+
 telescope.setup{
 	defaults = {
+        vimgrep_arguments = vimgrep_arguments,
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
@@ -14,7 +23,12 @@ telescope.setup{
 				["<C-k>"] = actions.move_selection_previous
 			}
 		}
-	}
+	},
+    pickers = {
+        find_files = {
+            find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        }
+    }
 }
 
 
