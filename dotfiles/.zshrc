@@ -18,6 +18,9 @@ precmd () { vcs_info }
 
 bindkey -v
 
+# init ssh-agent
+ps -p $SSH_AGENT_PID > /dev/null || eval "$(ssh-agent)" > /dev/null
+
 # prompt
 setopt prompt_subst
 export PS1='%F{green}%n@%m%f: %1~${vcs_info_msg_0_} %# '
@@ -43,7 +46,7 @@ fi
 
 
 # aliases
-alias ll='ls -l'
+alias ll='ls -alh'
 alias la='ls -a'
 alias vi='vim'
 alias ls='ls --color=auto'
@@ -64,6 +67,7 @@ fi
 # git aliases
 alias ga='git add .'
 alias gcm='git commit -m'
+alias gpm='git pull origin main'
 # end git aliases
 
 # end aliases

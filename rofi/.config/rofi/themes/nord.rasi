@@ -31,17 +31,17 @@
     foreground:  @nord9;
     backlight:   #ccffeedd;
     background-color:  transparent;
+    border-radius: 6px;
 
     highlight:     underline bold #eceff4;
 
-    transparent: rgba(46,52,64,0);
+    transparent: rgba(20,20,20,0.5);
 }
 
 window {
     location: center;
     anchor:   center;
-    transparency: "screenshot";
-    padding: 10px;
+    transparency: "real";
     border:  0px;
     border-radius: 6px;
 
@@ -67,9 +67,10 @@ message {
 inputbar {
     color: @nord6;
     padding: 11px;
-    background-color: #3b4252;
+    /* background-color: #3b4252; */
+    background-color: @transparent;
 
-    border: 1px;
+    border: 0px 0px 1px 0px;
     border-radius:  6px 6px 0px 0px;
     border-color: @nord10;
 }
@@ -86,9 +87,10 @@ prompt {
 listview {
     padding: 8px;
     border-radius: 0px 0px 6px 6px;
-    border-color: @nord10;
+    /* border-color: @nord10; */
     border: 0px 1px 1px 1px;
-    background-color: rgba(46,52,64,0.9);
+    /* background-color: rgba(46,52,64,0.9); */
+    background-color: @transparent;
     dynamic: false;
 }
 

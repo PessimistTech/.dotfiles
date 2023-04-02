@@ -1,5 +1,5 @@
 -- local completeopt = { 'menu' , 'menuone' , 'noselect' }
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspServers = { 'gopls', 'jdtls' }
 local opts = { noremap=true, silent=true }
 
@@ -53,7 +53,10 @@ local attach = function(client, buffnr)
 	bufMapN(buffnr, '<leader>fds', function()
         require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy())
     end)
-	filetype_attach[filetype](client)
+
+    if filetype_attach[filetype] then 
+	    filetype_attach[filetype](client)
+    end
 end
 
 -- TODO implement support for lombok in jdtls
@@ -107,3 +110,5 @@ cmp.setup({
         entries = 'native',
     }
 })
+
+require('Comment').setup()
