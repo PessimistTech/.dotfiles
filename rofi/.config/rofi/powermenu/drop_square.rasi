@@ -39,6 +39,7 @@ prompt {
     padding:                        1% 1% 1% 0%;
 	background-color: 				transparent;
 	text-color: 					@foreground;
+    position: center;
 }
 
 textbox-prompt-colon {
@@ -46,7 +47,7 @@ textbox-prompt-colon {
 	str: 							"System |";
 	background-color: 				transparent;
 	text-color: 					@foreground;
-    padding:                        1% 0.5% 1% 7%;
+    padding:                        1% 0.5% 1% 10%;
 }
 
 inputbar {
