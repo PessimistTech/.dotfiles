@@ -1,6 +1,6 @@
 -- local completeopt = { 'menu' , 'menuone' , 'noselect' }
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lspServers = { 'gopls', 'jdtls' }
+local lspServers = { 'gopls', 'jdtls', 'tsserver' }
 local opts = { noremap=true, silent=true }
 
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
