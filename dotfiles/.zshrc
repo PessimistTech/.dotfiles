@@ -18,9 +18,6 @@ precmd () { vcs_info }
 
 bindkey -v
 
-# init ssh-agent
-ps -p $SSH_AGENT_PID > /dev/null || eval "$(ssh-agent)" > /dev/null
-
 # prompt
 setopt prompt_subst
 export PS1='%F{green}%n@%m%f: %1~${vcs_info_msg_0_} %# '
@@ -80,6 +77,12 @@ else
     export VISUAL=vim
 fi
 export EDITOR=$VISUAL
+
+# init ssh-agent
+if [ -n "$SSH_AGENT_PID" ]; then
+    ps -p $SSH_AGENT_PID > /dev/null || eval "$(ssh-agent)" > /dev/null
+fi
+
 
 # local machine expansion 
 if [ -f ~/.zshlocal ]; then 
