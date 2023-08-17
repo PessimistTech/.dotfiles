@@ -9,7 +9,7 @@ local formatOnSave = function()
     vim.cmd[[
 		augroup lsp_buf_format
     		au! BufWritePre <buffer>
-    		autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({async = true})
+    		autocmd BufWritePre <buffer> :lua vim.lsp.buf.format()
    		augroup END
  	]]
 end
