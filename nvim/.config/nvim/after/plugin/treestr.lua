@@ -4,7 +4,7 @@ if not has_treestr then
 end
 
 treesitterCfg.setup{
-	ensure_installed = { 'go', 'java', 'json', 'javascript', 'typescript', 'bash', 'yaml', 'markdown', 'markdown_inline', 'lua', 'jsx' },
+	ensure_installed = { 'go', 'java', 'json', 'javascript', 'typescript', 'bash', 'yaml', 'markdown', 'markdown_inline', 'lua' },
     highlight = {
         enable = true
     },
