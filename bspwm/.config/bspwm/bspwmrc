@@ -62,8 +62,8 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Discord desktop='^1'
 
 #Auto-Start
+picom -b
 lxpolkit &
-picom --config "$HOME/.config/bspwm/picom.conf" &
 flameshot &
 bspc desktop -f ^3
 
