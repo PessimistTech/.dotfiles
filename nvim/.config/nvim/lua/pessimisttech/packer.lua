@@ -32,6 +32,7 @@ return require('packer').startup(function(use)
   }
   use 'numToStr/Comment.nvim'
   use 'onsails/lspkind-nvim'
+  use 'lervag/vimtex'
 
   -- completion
   use 'hrsh7th/nvim-cmp'

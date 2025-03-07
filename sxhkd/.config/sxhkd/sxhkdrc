@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + x
-	kitty 
+	kitty --working-directory ~
 
 # program launcher
 super + space
@@ -16,7 +16,7 @@ super + Escape
 
 # My program Hotkeys
 super + b
-	firefox
+	brave-browser
 
 super + p 
 	flameshot full -p /media/drive/Screenshots
