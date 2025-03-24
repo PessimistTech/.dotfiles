@@ -1,0 +1,56 @@
+background = #222436
+foreground = #c8d3f5
+selection-background = #2d3f76
+selection-foreground = #c8d3f5
+cursor-color = #c8d3f5
+cursor-text = #222436
+
+#moon
+# normal
+# palette = 0=#1b1d2b
+# palette = 1=#ff757f
+# palette = 2=#c3eBBd
+# palette = 3=#ffc777
+# palette = 4=#82aaff
+# palette = 5=#c099ff
+# palette = 6=#86e1fc
+# palette = 7=#828bb8
+#
+# # bright
+# palette = 8=#444a73
+# palette = 9=#ff8d94
+# palette = 10=#c7fb6d
+# palette = 11=#ffd8ab
+# palette = 12=#9ab8ff
+# palette = 13=#caabff
+# palette = 14=#b2ebff
+# palette = 15=#c8d3f5
+#
+# # extended colors
+# palette = 16=#ff966c
+# palette = 17=#c53b53
+
+#night
+#normal
+palette = 0=#15161e
+palette = 1=#f7768e
+palette = 2=#9ece6a
+palette = 3=#e0af68
+palette = 4=#7aa2f7
+palette = 5=#bb9af7
+palette = 6=#7dcfff
+palette = 7=#a9b1d6
+
+# bright
+palette = 8=#414868
+palette = 9=#ff899d
+palette = 10=#9fe044
+palette = 11=#faba4a
+palette = 12=#8db0ff
+palette = 13=#c7a9ff
+palette = 14=#a4daff
+palette = 15=#c0caf5
+
+# extended colors
+palette = 16=#ff9e64
+palette = 17=#db4b4b
