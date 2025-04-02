@@ -1,7 +1,8 @@
 #! /bin/sh
 
 # Screen settings
-xrandr --output DP-3 --mode 2560x1440 --rate 165
+xrandr --output DP-3 --mode 2560x1440 --rate 144
+# xrandr --output DP-3 --mode 3840x2160 --rate 144
 xrandr --auto --output HDMI-1 --mode 1920x1080 --rate 60 --left-of DP-3 --rotate left
 
 feh --bg-fill ~/Pictures/backgrounds/landscape.jpg &
