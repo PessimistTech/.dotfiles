@@ -25,12 +25,7 @@ git_status() {
 
 git_prompt() {
     (( $+commands[git] )) || return
-    autoload -Uz vcs_info
     if [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]]; then
-        zstyle ':vcs_info:*' check-for-changes true
-        zstyle ':vcs_info:*' unstagedstr ' *'
-        zstyle ':vcs_info:*' stagedstr $' \u00b1'
-
         local GitColor
         case $OSTYPE in 
             'darwin'*)
@@ -40,6 +35,12 @@ git_prompt() {
                 GitColor='blue'
                 ;;
         esac
+
+        autoload -Uz vcs_info
+        zstyle ':vcs_info:*' enable git
+        zstyle ':vcs_info:*' check-for-changes true
+        zstyle ':vcs_info:*' unstagedstr ' *'
+        zstyle ':vcs_info:*' stagedstr $' \u00b1'
         zstyle ':vcs_info:git*' formats "%b%u%c"
         vcs_info
             
@@ -50,7 +51,11 @@ git_prompt() {
 bindkey -v
 
 # prompt
-export PS1="%F{green}%n@%m%f: %1~ $(git_prompt) %# "
+prompt() {
+    export PS1="%F{green}%n@%m%f: %1~ $(git_prompt) %# "
+}
+
+precmd () { prompt }
 
 # history 
 export HISTFILE=~/.zsh_history
