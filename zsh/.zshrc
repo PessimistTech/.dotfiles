@@ -4,11 +4,8 @@
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots)
+setopt prompt_subst
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr $' \u00b1'
 
 git_status() {
     local GITSTATUSICON
@@ -26,23 +23,34 @@ git_status() {
     echo -n "$GITSTATUSICON"
 }
 
-local GitColor
-case $OSTYPE in 
-	'darwin'*)
-        GitColor='red'
-	;;
-	'linux'*)
-        GitColor='blue'
-	;;
-esac
-zstyle ':vcs_info:git*' formats "%b%u%c"
-precmd () { vcs_info }
+git_prompt() {
+    (( $+commands[git] )) || return
+    autoload -Uz vcs_info
+    if [[ "$(command git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]]; then
+        zstyle ':vcs_info:*' check-for-changes true
+        zstyle ':vcs_info:*' unstagedstr ' *'
+        zstyle ':vcs_info:*' stagedstr $' \u00b1'
+
+        local GitColor
+        case $OSTYPE in 
+            'darwin'*)
+                GitColor='red'
+                ;;
+            'linux'*)
+                GitColor='blue'
+                ;;
+        esac
+        zstyle ':vcs_info:git*' formats "%b%u%c"
+        vcs_info
+            
+        echo -n "(%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f)"
+    fi
+}
 
 bindkey -v
 
 # prompt
-setopt prompt_subst
-export PS1='%F{green}%n@%m%f: %1~(%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f) %# '
+export PS1="%F{green}%n@%m%f: %1~ $(git_prompt) %# "
 
 # history 
 export HISTFILE=~/.zsh_history
