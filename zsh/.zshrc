@@ -9,6 +9,7 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr $' \u00b1'
+
 git_status() {
     local GITSTATUSICON
     GITSTATUSICON=$'\ue0a0'
@@ -24,6 +25,7 @@ git_status() {
     fi
     echo -n "$GITSTATUSICON"
 }
+
 local GitColor
 case $OSTYPE in 
 	'darwin'*)
