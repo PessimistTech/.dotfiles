@@ -43,7 +43,7 @@
 # resize-overlay-duration = 4s 200ms
 
 ## background
-background-opacity = 0.6
+background-opacity = 0.7
 background = #000000
 background-blur = 8
 
@@ -63,3 +63,5 @@ theme = tokyonight
 ## Options
 quit-after-last-window-closed = true
 
+## window
+window-decoration = server
