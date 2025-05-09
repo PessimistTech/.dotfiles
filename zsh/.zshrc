@@ -44,7 +44,7 @@ git_prompt() {
         zstyle ':vcs_info:git*' formats "%b%u%c"
         vcs_info
             
-        echo -n " (%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f)"
+        echo -n "(%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f)"
     fi
 }
 
