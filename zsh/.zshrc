@@ -44,7 +44,7 @@ git_prompt() {
         zstyle ':vcs_info:git*' formats "%b%u%c"
         vcs_info
             
-        echo -n "(%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f)"
+        echo -n " (%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f)"
     fi
 }
 
@@ -52,7 +52,7 @@ bindkey -v
 
 # prompt
 prompt() {
-    export PS1="%F{green}%n@%m%f: %1~ $(git_prompt) %# "
+    export PS1="%F{green}%n@%m%f: %1~$(git_prompt) %# "
 }
 
 precmd () { prompt }
