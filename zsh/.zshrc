@@ -6,12 +6,15 @@ compinit
 _comp_options+=(globdots)
 
 autoload -Uz vcs_info
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr $' \u00b1'
 case $OSTYPE in 
 	'darwin'*)
-		zstyle ':vcs_info:git*' formats '(%F{red}%b%f)'
+		zstyle ':vcs_info:git*' formats '(%F{red}%b%u%c%f)'
 	;;
 	'linux'*)
-		zstyle ':vcs_info:git*' formats '(%F{blue}%b%f)'
+		zstyle ':vcs_info:git*' formats '(%F{blue}%b%u%c%f)'
 	;;
 esac
 precmd () { vcs_info }
