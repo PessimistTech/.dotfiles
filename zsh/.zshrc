@@ -28,6 +28,18 @@ export HISTSIZE=2000
 export HISTFILESIZE=3000
 export SAVEHIST=$HISTSIZE
 
+# opts
+setopt always_to_end
+
+# plugins
+if [ -n "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if (( $+commands[fzf] )); then 
+    source <(fzf --zsh)
+fi
+
 # xdg vars
 if [ -z "$XDG_CONFIG_HOME" ] ; then
     export XDG_CONFIG_HOME="$HOME/.config" 

@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
 
   -- helpful tools
   use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.2',
+      'nvim-telescope/telescope.nvim', tag = '0.1.8',
       requires = { 
           {'nvim-lua/plenary.nvim'},
           {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
@@ -50,6 +50,11 @@ return require('packer').startup(function(use)
   -- themes
   use 'morhetz/gruvbox'
   use 'folke/tokyonight.nvim'
+
+  use 'folke/noice.nvim'
+  use 'MunifTanjim/nui.nvim'
+  use 'rcarriga/nvim-notify'
+
   if packer_bootstrap then
           require('packer').sync()
   end
