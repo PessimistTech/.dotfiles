@@ -33,14 +33,14 @@ case $OSTYPE in
         GitColor='blue'
 	;;
 esac
-zstyle ':vcs_info:git*' formats "(%F{$GitColor}$(git_status)%b%u%c%f)"
+zstyle ':vcs_info:git*' formats "%b%u%c"
 precmd () { vcs_info }
 
 bindkey -v
 
 # prompt
 setopt prompt_subst
-export PS1='%F{green}%n@%m%f: %1~${vcs_info_msg_0_} %# '
+export PS1='%F{green}%n@%m%f: %1~(%F{$GitColor}$(git_status)${vcs_info_msg_0_}%f) %# '
 
 # history 
 export HISTFILE=~/.zsh_history
