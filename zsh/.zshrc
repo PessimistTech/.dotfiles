@@ -9,10 +9,20 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr $' \u00b1'
-
+GITSTATUSICON=$'\ue0a0'
+local ahead behind
+ahead=$(command git log --oneline @{upstream}.. 2>/dev/null)
+behind=$(command git log --oneline ..@{upstream} 2>/dev/null)
+if [[ -n "$ahead" ]] && [[ -n "$behind" ]]; then
+    PL_BRANCH_CHAR=$'\u21c5'
+elif [[ -n "$ahead" ]]; then
+    PL_BRANCH_CHAR=$'\u21b1'
+elif [[ -n "$behind" ]]; then
+    PL_BRANCH_CHAR=$'\u21b0'
+fi
 case $OSTYPE in 
 	'darwin'*)
-		zstyle ':vcs_info:git*' formats '(%F{red}%b%u%c%f)'
+		zstyle ':vcs_info:git*' formats "(%F{red}$GITSTATUSICON%b%u%c%f)"
 	;;
 	'linux'*)
 		zstyle ':vcs_info:git*' formats '(%F{blue}%b%u%c%f)'
