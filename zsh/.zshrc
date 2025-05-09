@@ -67,7 +67,7 @@ export SAVEHIST=$HISTSIZE
 setopt always_to_end
 
 # plugins
-if [ -n "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+if [ -f "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
     source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
