@@ -51,11 +51,7 @@ return require('packer').startup(function(use)
   use 'morhetz/gruvbox'
   use 'folke/tokyonight.nvim'
 
-  use 'folke/noice.nvim'
-  use 'MunifTanjim/nui.nvim'
-  use 'rcarriga/nvim-notify'
-
   if packer_bootstrap then
-          require('packer').sync()
+    require('packer').sync()
   end
 end)

@@ -2,8 +2,12 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspServers = { 'gopls', 'jdtls', 'tsserver' }
 local opts = { noremap=true, silent=true }
+vim.diagnostic.config({ virtual_text = true })
 
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.keymap.set('n', '<leader>et', function()
+    vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
+end, { desc = "Toggle diagnostics inline outut" })
 
 local formatOnSave = function()
     vim.cmd[[
@@ -112,3 +116,4 @@ cmp.setup({
 })
 
 require('Comment').setup()
+
