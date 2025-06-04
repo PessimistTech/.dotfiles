@@ -1,6 +1,6 @@
 -- local completeopt = { 'menu' , 'menuone' , 'noselect' }
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lspServers = { 'gopls', 'jdtls', 'tsserver' }
+local lspServers = { 'gopls', 'jdtls', 'ts_ls' }
 local opts = { noremap=true, silent=true }
 vim.diagnostic.config({ virtual_text = true })
 
