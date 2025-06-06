@@ -48,7 +48,7 @@ background = #000000
 background-blur = 8
 
 ## Font
-font-family = "Fira Code Ligh SemiBold"
+font-family = "Fira Code Light SemiBold"
 font-thicken = true
 font-size = 13
 window-inherit-font-size = false
