@@ -67,3 +67,6 @@ quit-after-last-window-closed = true
 
 ## window
 window-decoration = server
+
+## keybinds
+keybind = super+v=paste_from_clipboard
