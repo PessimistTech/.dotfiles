@@ -56,6 +56,8 @@ window-inherit-font-size = false
 ## Window
 window-height = 1000000
 window-width = 1000000
+window-padding-x = 6 
+window-padding-y = 6 
 
 ## Theme
 theme = tokyonight
