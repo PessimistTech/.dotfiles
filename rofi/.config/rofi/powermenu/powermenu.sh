@@ -46,6 +46,7 @@ case $chosen in
 			systemctl reboot
         ;;
     $logout)
-			bspc quit
+			# bspc quit
+            hyprctl dispatch exit
         ;;
 esac
