@@ -55,7 +55,7 @@ button:hover {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #64727D;
+    color: #FFFFFF;
     border-radius: 8px;
 }
 
@@ -69,7 +69,7 @@ button:hover {
 }
 
 #workspaces button.empty {
-    color: #FFFFFF;
+    color: #64727D;
 }
 
 #workspaces button.empty.active {
