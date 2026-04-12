@@ -65,10 +65,11 @@ end
 
 -- TODO implement support for lombok in jdtls
 for _, server in pairs(lspServers) do
-	require('lspconfig')[server].setup {
+    vim.lsp.enable(server)
+	vim.lsp.config(server, {
 		capabilities = capabilities,
 		on_attach = attach
-	}
+	})
 end
 
 local cmp = require('cmp')
