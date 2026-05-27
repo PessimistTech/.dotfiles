@@ -14,6 +14,7 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
   -- helpful tools
   use {

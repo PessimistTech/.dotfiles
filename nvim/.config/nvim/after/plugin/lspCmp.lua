@@ -11,7 +11,7 @@ ensure_installed = {
 }
 vim.diagnostic.config({ virtual_text = true })
 
-vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '<leader>et', function()
     vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
 end, { desc = "Toggle diagnostics inline outut" })
@@ -48,6 +48,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local telescope = require('telescope.builtin')
         local themes = require('telescope.themes')
 
+        pcall(vim.treesitter.start)
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
         local map = function(lhs, rhs)
             vim.keymap.set('n', lhs, rhs, {
                 buffer = buffnr,
@@ -56,20 +59,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
             })
         end
 
-        map(buffnr, '<leader>gd', vim.lsp.buf.definition) 
-        map(buffnr, '<leader>gr', function()
+        map('<leader>gd', vim.lsp.buf.definition) 
+        map('<leader>gr', function()
             require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy())
         end)
-        map(buffnr, 'K', vim.lsp.buf.hover)
-        map(buffnr, '<leader>gt', vim.lsp.buf.type_definition)
-        map(buffnr, '<leader>dn', vim.diagnostic.goto_next)
-        map(buffnr, '<leader>dp', vim.diagnostic.goto_prev)
-        map(buffnr, '<leader>rn', vim.lsp.buf.rename)
-        map(buffnr, '<leader>o', vim.lsp.buf.format)
-        map(buffnr, '<leader>ca', vim.lsp.buf.code_action)
-        map(buffnr, '<leader>ts', require('telescope.builtin').treesitter)
-        map(buffnr, '<leader>gi', require('telescope.builtin').lsp_implementations)
-        map(buffnr, '<leader>fds', function()
+        map('K', vim.lsp.buf.hover)
+        map('<leader>gt', vim.lsp.buf.type_definition)
+        map('<leader>dn', vim.diagnostic.goto_next)
+        map('<leader>dp', vim.diagnostic.goto_prev)
+        map('<leader>rn', vim.lsp.buf.rename)
+        map('<leader>o', vim.lsp.buf.format)
+        map('<leader>ca', vim.lsp.buf.code_action)
+        map('<leader>ts', require('telescope.builtin').treesitter)
+        map('<leader>gi', require('telescope.builtin').lsp_implementations)
+        map('<leader>fds', function()
             require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy())
         end)
 
