@@ -1,75 +1,90 @@
 -- local completeopt = { 'menu' , 'menuone' , 'noselect' }
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspServers = { 'gopls', 'jdtls', 'ts_ls' }
 local opts = { noremap=true, silent=true }
+
+ensure_installed = {
+    "go",
+    "gomod",
+    "gowork",
+    "gosum",
+}
 vim.diagnostic.config({ virtual_text = true })
 
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.keymap.set('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.keymap.set('n', '<leader>et', function()
     vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_text })
 end, { desc = "Toggle diagnostics inline outut" })
 
-local formatOnSave = function()
-    vim.cmd[[
-		augroup lsp_buf_format
-    		au! BufWritePre <buffer>
-    		autocmd BufWritePre <buffer> :lua vim.lsp.buf.format()
-   		augroup END
- 	]]
+local formatOnSave = function(buffnr)
+    local group = vim.api.nvim_create_augroup("LspFormat." .. buffnr, {})
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = group,
+        buffer = buffnr,
+        callback = function()
+            vim.lsp.buf.format({
+                async = false,
+            })
+        end,
+    })
 end
 
 local filetype_attach = setmetatable({
-	go = function(client)
-        formatOnSave()
+	go = function(buffnr)
+        formatOnSave(buffnr)
 	end,
-	java = function(client)
-        formatOnSave()
+	java = function(buffnr)
+        formatOnSave(buffnr)
 	end,
 },
 {})
 
-local bufMapN = function(buffnr, keymap, callback)
-    local options = {
-        noremap = opts.noremap,
-        silent = opts.silent,
-        callback = function()
-            callback()
-        end,
-    }
-    vim.api.nvim_buf_set_keymap(buffnr, 'n', keymap, '', options)
-end
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local buffnr = args.buf
+        local filetype = vim.bo[buffnr].filetype
 
-local attach = function(client, buffnr) 
-	local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-    bufMapN(buffnr, '<leader>gd', vim.lsp.buf.definition) 
-	bufMapN(buffnr, '<leader>gr', function()
-        require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy())
-    end)
-	bufMapN(buffnr, 'K', vim.lsp.buf.hover)
-	bufMapN(buffnr, '<leader>gt', vim.lsp.buf.type_definition)
-	bufMapN(buffnr, '<leader>dn', vim.diagnostic.goto_next)
-	bufMapN(buffnr, '<leader>dp', vim.diagnostic.goto_prev)
-	bufMapN(buffnr, '<leader>rn', vim.lsp.buf.rename)
-	bufMapN(buffnr, '<leader>o', vim.lsp.buf.format)
-    bufMapN(buffnr, '<leader>ca', vim.lsp.buf.code_action)
-    bufMapN(buffnr, '<leader>ts', require('telescope.builtin').treesitter)
-    bufMapN(buffnr, '<leader>gi', require('telescope.builtin').lsp_implementations)
-	bufMapN(buffnr, '<leader>fds', function()
-        require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy())
-    end)
+        local telescope = require('telescope.builtin')
+        local themes = require('telescope.themes')
 
-    if filetype_attach[filetype] then 
-	    filetype_attach[filetype](client)
+        local map = function(lhs, rhs)
+            vim.keymap.set('n', lhs, rhs, {
+                buffer = buffnr,
+                noremap = true,
+                silent = true,
+            })
+        end
+
+        map(buffnr, '<leader>gd', vim.lsp.buf.definition) 
+        map(buffnr, '<leader>gr', function()
+            require('telescope.builtin').lsp_references(require('telescope.themes').get_ivy())
+        end)
+        map(buffnr, 'K', vim.lsp.buf.hover)
+        map(buffnr, '<leader>gt', vim.lsp.buf.type_definition)
+        map(buffnr, '<leader>dn', vim.diagnostic.goto_next)
+        map(buffnr, '<leader>dp', vim.diagnostic.goto_prev)
+        map(buffnr, '<leader>rn', vim.lsp.buf.rename)
+        map(buffnr, '<leader>o', vim.lsp.buf.format)
+        map(buffnr, '<leader>ca', vim.lsp.buf.code_action)
+        map(buffnr, '<leader>ts', require('telescope.builtin').treesitter)
+        map(buffnr, '<leader>gi', require('telescope.builtin').lsp_implementations)
+        map(buffnr, '<leader>fds', function()
+            require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy())
+        end)
+
+        if filetype_attach[filetype] then 
+            filetype_attach[filetype](buffnr)
+        end
     end
-end
+})
 
 -- TODO implement support for lombok in jdtls
 for _, server in pairs(lspServers) do
-    vim.lsp.enable(server)
 	vim.lsp.config(server, {
 		capabilities = capabilities,
-		on_attach = attach
 	})
+    vim.lsp.enable(server)
 end
 
 local cmp = require('cmp')
@@ -96,7 +111,6 @@ cmp.setup({
       { name = 'luasnip' }, 
       { name = 'path' },
       { name = 'buffer' },
-      { name = 'nvim_lsp_signature_help' }
     }),
   
     formatting = {
