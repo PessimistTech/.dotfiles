@@ -158,23 +158,19 @@ hl.bind(mainMod .. " + SHIFT +  code:20", hl.dsp.window.resize({ x = 0, y = 100,
 hl.bind(mainMod .. " + SHIFT + code:21", hl.dsp.window.resize({ x = 0, y = -100, relative = true }, { repeating = true }))
 
 
--- NOT ACTIVELY USED CURRENTLY. LEFT AS AN EXAMPLE FOR FUTURE USE IF NEEDED (carried over during lua migration) [
+-- Laptop multimedia keys for volume and LCD brightness
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
--- --  Laptop multimedia keys for volume and LCD brightness
--- bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
--- bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
--- bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
--- bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
--- bindel = ,XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+
--- bindel = ,XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-
-
--- -- Requires playerctl
--- bindl = , XF86AudioNext, exec, playerctl next
--- bindl = , XF86AudioPause, exec, playerctl play-pause
--- bindl = , XF86AudioPlay, exec, playerctl play-pause
--- bindl = , XF86AudioPrev, exec, playerctl previous
-
--- ]
+-- Requires playerctl
+hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 -- #####################
 -- ### LOOK AND FEEL ###
@@ -277,18 +273,22 @@ hl.config({
     }
 })
 
-hl.device({
-    name = "epic-mouse-v1",
-    sensitivity = -0.5,
-})
-
 -- #############
--- ## Various ##
+-- #### Misc ###
 -- #############
 
 hl.config({
+    dwindle = {
+        preserve_split = true,
+    },
+
     ecosystem = {
         no_update_news = true, 
         no_donation_nag = true,
+    },
+
+    misc = {
+        force_default_wallpaper = -1,
+        disable_hyprland_logo = false,
     },
 })
