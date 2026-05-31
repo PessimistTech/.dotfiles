@@ -47,6 +47,6 @@ case $chosen in
         ;;
     $logout)
 			# bspc quit
-            hyprctl dispatch exit
+            hyprctl dispatch "hl.dsp.exit()"
         ;;
 esac
